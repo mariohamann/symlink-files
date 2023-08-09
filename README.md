@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm install symlink-files`
+`npm install @mariohamann/symlink-files`
 
 ## API Usage
 
