@@ -4,8 +4,6 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { createSymlinks, removeSymlinks, persistSymlinks } from './index.js';
 
-console.log('Welcome to the symlink-manager!')
-
 const argv = yargs(hideBin(process.argv))
   .usage('Usage: $0 <command> [options]')
   .command('create', 'Create symlinks based on the configuration', (yargs) => {
@@ -74,10 +72,26 @@ function getConfigFromArgs(argv) {
   };
 }
 
-if (argv._.includes('create')) {
-  createSymlinks([getConfigFromArgs(argv)]);
-} else if (argv._.includes('remove')) {
-  removeSymlinks([getConfigFromArgs(argv)]);
-} else if (argv._.includes('persist')) {
-  persistSymlinks([getConfigFromArgs(argv)]);
+async function run() {
+  try {
+    if (argv._.includes('create')) {
+      console.log(`Creating symlinks from ${argv.source} to ${argv.target}`);
+      await createSymlinks([getConfigFromArgs(argv)]);
+      console.log(`Successfully created symlinks.`);
+    } else if (argv._.includes('remove')) {
+      console.log(`Removing symlinks in ${argv.target}`);
+      await removeSymlinks([getConfigFromArgs(argv)]);
+      console.log(`Successfully removed symlinks.`);
+    } else if (argv._.includes('persist')) {
+      console.log(`Persisting symlinks in ${argv.target}...`);
+      await persistSymlinks([getConfigFromArgs(argv)]);
+      console.log(`Successfully persisted symlinks.`);
+    } else {
+      console.error('Unknown command. Use --help for available commands.');
+    }
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
 }
+
+run();
