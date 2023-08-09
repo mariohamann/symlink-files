@@ -1,0 +1,20 @@
+{
+  "name": "symlink-files",
+  "version": "1.0.0",
+  "description": "A package that creates symlink to files that match provided globs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/test.js",
+    "make-exec": "chmod +x ./cli.js"
+  },
+  "bin": {
+    "symlink-files": "./cli.js"
+  },
+  "type": "module",
+  "author": "mariohamann",
+  "license": "MIT",
+  "dependencies": {
+    "globby": "^13.2.2",
+    "yargs": "^17.7.2"
+  }
+}
