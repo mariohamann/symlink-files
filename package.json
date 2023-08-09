@@ -1,5 +1,5 @@
 {
-  "name": "symlink-files",
+  "name": "@mariohamann/symlink-files",
   "version": "1.0.0",
   "description": "A package that creates symlink to files that match provided globs.",
   "main": "index.js",
@@ -9,6 +9,11 @@
   },
   "bin": {
     "symlink-files": "./cli.js"
+  },
+  "homepage": "https://github.com/mariohamann/symlink-files",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mariohamann/symlink-files"
   },
   "type": "module",
   "author": "mariohamann",
