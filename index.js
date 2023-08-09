@@ -54,7 +54,8 @@ export async function createSymlinks(entries, options = {}) {
         }
       }
 
-      fs.symlinkSync(sourcePath, targetPath);
+      const relativePath = path.relative(path.dirname(targetPath), sourcePath);
+      fs.symlinkSync(relativePath, targetPath);
     }
   }
 }
